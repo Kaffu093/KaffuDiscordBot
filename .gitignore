@@ -733,3 +733,4 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/csharp,visualstudio,visualstudiocode,intellij+all,rider
 
 /KaffuDiscordBot/Configuration.json
+/KaffuDiscordBot.sln.DotSettings
