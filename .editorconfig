@@ -281,3 +281,4 @@ resharper_web_config_module_not_resolved_highlighting = warning
 resharper_web_config_type_not_resolved_highlighting = warning
 resharper_web_config_wrong_module_highlighting = warning
 csharp_style_implicit_object_creation_when_type_is_apparent	= false:suggestion
+dotnet_style_prefer_collection_expression = false:suggestion

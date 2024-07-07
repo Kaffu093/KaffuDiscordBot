@@ -42,10 +42,4 @@ internal class Logger
 
         return Task.CompletedTask;
     }
-
-	internal static Task LogAsync(string message)
-	{
-		Console.WriteLine(message);
-		return Task.CompletedTask;
-	}
 }

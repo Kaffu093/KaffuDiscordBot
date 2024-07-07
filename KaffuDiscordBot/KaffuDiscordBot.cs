@@ -27,6 +27,7 @@ internal abstract class KaffuDiscordBot
 
 	internal static async Task Main()
 	{
+		// Register services
 		KaffuDiscordBot.serviceProvider = new ServiceCollection()
 			.AddSingleton(KaffuDiscordBot.Configuration)
 			.AddSingleton<Logger>()
@@ -43,6 +44,7 @@ internal abstract class KaffuDiscordBot
 			.AddSingleton<InteractionHandler>()
 			.BuildServiceProvider();
 
+		// Get services
 		DiscordSocketClient discordSocketClient =
 			KaffuDiscordBot.serviceProvider.GetRequiredService<DiscordSocketClient>();
 
@@ -56,16 +58,20 @@ internal abstract class KaffuDiscordBot
 		InteractionHandler interactionHandler =
 			KaffuDiscordBot.serviceProvider.GetRequiredService<InteractionHandler>();
 
+		// Configure logging
 		discordSocketClient.Log += Logger.LogAsync;
 		commandService.Log += Logger.LogAsync;
 		interactionService.Log += Logger.LogAsync;
 
+		// Start bot
 		await discordSocketClient.LoginAsync(TokenType.Bot, KaffuDiscordBot.Configuration.Token);
 		await discordSocketClient.StartAsync();
 
-		await commandHandler.InitializeAsync();
-		await interactionHandler.InitializeAsync();
+		// Register commands and interactions
+		commandHandler.InitializeAsync();
+		interactionHandler.InitializeAsync();
 
+		// Keep bot running
 		await Task.Delay(Timeout.Infinite);
 	}
 }
